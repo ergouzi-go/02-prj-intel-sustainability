@@ -1,1 +1,219 @@
-/* Add your CSS here */
+:root {
+  --intel-blue: #0071c5;
+  --intel-blue-dark: #005aa5;
+  --ink: #1e1e1e;
+  --silver: #dfe3e8;
+  --paper: #f7f9fc;
+  --white: #ffffff;
+  --shadow: 0 12px 30px rgba(30, 30, 30, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(180deg, #f4f7fb 0%, #eef3f8 100%);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+/* Hero section styling with Intel-inspired colors */
+.hero {
+  background: linear-gradient(135deg, var(--intel-blue-dark) 0%, var(--intel-blue) 45%, #0d2f4f 100%);
+  color: var(--white);
+  padding: 3rem 1.5rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(255,255,255,0.16), transparent 35%);
+  pointer-events: none;
+}
+
+.hero__content {
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero__logo {
+  width: 110px;
+  height: auto;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.25));
+}
+
+.hero__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 0.8rem;
+  margin: 0 0 0.75rem;
+  opacity: 0.95;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  line-height: 1.1;
+  margin: 0 0 1rem;
+  max-width: 720px;
+}
+
+.hero__subheading {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  max-width: 680px;
+  margin: 0;
+  opacity: 0.95;
+}
+
+main {
+  padding: 2.5rem 1.2rem 3rem;
+}
+
+.timeline-section {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.timeline-section__intro {
+  margin-bottom: 1.5rem;
+}
+
+.timeline-section__intro h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.6rem;
+}
+
+.timeline-section__intro p {
+  margin: 0;
+  color: #4f5964;
+}
+
+/* Responsive timeline container with Flexbox */
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 1.4rem;
+  padding: 1.25rem 0 1.6rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(30, 30, 30, 0.18), rgba(0, 113, 197, 0.35));
+  z-index: 0;
+  transform: translateY(-50%);
+}
+
+.timeline-card {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 min(290px, 82vw);
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid rgba(0, 113, 197, 0.14);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  scroll-snap-align: start;
+  min-height: 100%;
+  cursor: pointer;
+  outline: none;
+}
+
+.timeline-card:hover,
+.timeline-card:focus-within {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(0, 113, 197, 0.18);
+}
+
+.timeline-card__media {
+  margin: 0;
+  background: var(--paper);
+}
+
+.timeline-card__media img {
+  display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.timeline-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 1rem 1rem 1.2rem;
+  flex: 1;
+}
+
+.timeline-card__body h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+
+.timeline-card__year {
+  margin: 0;
+  font-weight: 700;
+  color: var(--intel-blue);
+}
+
+.timeline-card__description {
+  margin: 0;
+  color: #46515c;
+  font-size: 0.95rem;
+}
+
+.timeline-footer {
+  text-align: center;
+  padding: 0.8rem 1rem 0;
+  color: #576370;
+  font-size: 0.96rem;
+}
+
+/* Mobile layout: stack cards vertically and disable horizontal scroll */
+@media (max-width: 767px) {
+  .hero {
+    padding: 2.3rem 1.1rem 3rem;
+  }
+
+  .timeline {
+    flex-direction: column;
+    overflow-x: visible;
+    scroll-snap-type: none;
+    padding-left: 1.2rem;
+  }
+
+  .timeline::before {
+    top: 0;
+    left: 0.35rem;
+    bottom: 0;
+    width: 2px;
+    height: auto;
+    background: linear-gradient(180deg, rgba(30, 30, 30, 0.18), rgba(0, 113, 197, 0.35));
+    transform: none;
+  }
+
+  .timeline-card {
+    flex-basis: auto;
+    width: 100%;
+  }
+}
