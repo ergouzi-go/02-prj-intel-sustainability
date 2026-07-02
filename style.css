@@ -1,4 +1,4 @@
-:root {
+g :root {
   --intel-blue: #0071c5;
   --intel-blue-dark: #005aa5;
   --ink: #1e1e1e;
@@ -160,8 +160,19 @@ main {
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
-  padding: 1rem 1rem 1.2rem;
+  padding: 0 1rem;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.25s ease, max-height 0.25s ease, padding 0.25s ease;
   flex: 1;
+}
+
+.timeline-card:hover .timeline-card__body,
+.timeline-card:focus-within .timeline-card__body {
+  opacity: 1;
+  max-height: 220px;
+  padding: 1rem 1rem 1.2rem;
 }
 
 .timeline-card__body h3 {
